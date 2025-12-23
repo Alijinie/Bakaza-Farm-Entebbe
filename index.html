@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Bakaza Farm Entebbe | Hardy Kuroiler Chicks Imported from Netherlands</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        farm: {
+                            dark: '#0a1a10',      // Deep forest green
+                            surface: '#122b1c',   // Moss green
+                            gold: '#fbbf24',      // Chick yellow/Gold
+                            accent: '#4ade80',    // Fresh grass green
+                        }
+                    },
+                    fontFamily: { sans: ['Outfit', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass { background: rgba(18, 43, 28, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        .glass-card { background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%); border: 1px solid rgba(255,255,255,0.05); }
+        .fade-up { animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; transform: translateY(20px); }
+        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+         @keyframes fadeIn {
+        from { opacity: 0; transform: scale(0.95); }
+        to { opacity: 1; transform: scale(1); }
+    }
+    .animate-fadeIn { animation: fadeIn 0.3s ease-out; }
+    
+    /* Mobile Menu Transitions */
+    #mobile-menu { transition: opacity 0.3s ease-in-out, visibility 0.3s; }
+    </style>
+</head>
+<body class="bg-farm-dark text-white font-sans min-h-screen overflow-x-hidden">
+
+    <header class="fixed top-0 w-full z-50 px-6 py-4">
+        <div class="max-w-7xl mx-auto glass rounded-full px-6 py-3 flex justify-between items-center shadow-lg relative z-50">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-farm-gold flex items-center justify-center">
+                    <i class="fa-solid fa-kiwi-bird text-farm-dark"></i>
+                </div>
+                <div class="leading-none">
+                    <span class="block text-sm font-bold tracking-widest text-white uppercase">Bakaza Farm Entebbe</span>
+                    <span class="block text-[10px] text-farm-gold tracking-[0.2em] font-medium uppercase">Poultry Farm</span>
+                </div>
+            </div>
+
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
+                <button onclick="switchView('home')" class="hover:text-farm-gold transition-colors">Farm Store</button>
+                <button onclick="switchView('facts')" class="hover:text-farm-gold transition-colors">Growth Performance</button>
+                <a href="https://wa.me/256786869211" class="bg-white/10 hover:bg-white/20 px-5 py-2 rounded-full transition-all">Contact Us</a>
+            </div>
+
+            <button onclick="toggleMobileMenu()" class="md:hidden text-gray-300 hover:text-farm-gold focus:outline-none w-10 h-10 flex items-center justify-center">
+                <i id="mobile-menu-icon" class="fa-solid fa-bars text-xl transition-transform duration-300"></i>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="fixed inset-0 bg-farm-dark/95 backdrop-blur-xl z-40 hidden opacity-0 flex flex-col items-center justify-center space-y-8">
+            <button onclick="switchView('home'); toggleMobileMenu()" class="text-3xl font-bold text-white hover:text-farm-gold transition-colors">Farm Store</button>
+            <button onclick="switchView('facts'); toggleMobileMenu()" class="text-3xl font-bold text-white hover:text-farm-gold transition-colors">Growth Stats</button>
+            <a href="https://wa.me/256786869211" class="text-xl font-bold text-farm-dark bg-farm-gold px-8 py-4 rounded-full shadow-[0_0_20px_rgba(251,191,36,0.4)]">Contact Us on WhatsApp</a>
+            
+            <div class="absolute bottom-10 text-gray-500 text-xs tracking-widest uppercase">
+                Entebbe Heritage Poultry
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-1 pt-28 pb-32 px-4 md:px-8 max-w-7xl mx-auto w-full">
+        
+        <section id="view-home" class="space-y-12">
+            <div class="fade-up">
+                <div class="relative rounded-3xl overflow-hidden bg-farm-surface border border-white/5 flex flex-col md:flex-row items-center">
+                    <div class="p-8 md:p-12 md:w-1/2 z-10">
+                        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-farm-gold/20 text-farm-gold text-[10px] font-bold mb-4">
+                            <span class="w-1.5 h-1.5 rounded-full bg-farm-gold animate-pulse"></span> HARDY KUROILERS IMPORTED FROM NETHERLANDS
+                        </span>
+                        <h1 class="text-4xl md:text-6xl font-extrabold mb-4">High-Yield <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-farm-gold to-yellow-200">Kuroiler Chicks</span></h1>
+                        <p class="text-gray-400 text-sm mb-8 max-w-md">Hardy like village chickens, productive like commercial breeds. Perfect for the Ugandan climate.</p>
+                        <div class="flex gap-4">
+                            <button onclick="document.getElementById('products-grid').scrollIntoView({behavior: 'smooth'})" class="bg-farm-gold text-farm-dark px-8 py-3 rounded-full font-bold text-sm shadow-lg">Order Chicks</button>
+                            <button onclick="switchView('facts')" class="px-6 py-3 rounded-full border border-white/10 text-sm flex items-center gap-2"><i class="fa-solid fa-chart-line text-farm-accent"></i> Growth Stats</button>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 w-full h-64 md:h-[450px] bg-gray-800">
+                        <div class="w-full h-full flex items-center justify-center text-gray-500 italic"><img src="1.png" alt="Bakaza Farm Entebbe"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="products-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <article onclick="openProduct(0)" class="group glass-card rounded-2xl p-6 cursor-pointer hover:-translate-y-2 transition-all">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-bold">1-Day Old Chicks</h3>
+                        <span class="bg-farm-accent/20 text-farm-accent text-[10px] px-2 py-1 rounded">VACCINATED</span>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-4">The affordable choice for large-scale farmers.</p>
+                    <div class="text-farm-gold font-bold text-xl">UGX 3,500 <span class="text-xs text-gray-500 font-normal">/ chick</span></div>
+                </article>
+
+                <article onclick="openProduct(1)" class="group glass-card rounded-2xl p-6 cursor-pointer hover:-translate-y-2 transition-all">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-bold">1-Month Old Chicks</h3>
+                        <span class="bg-orange-500/20 text-orange-400 text-[10px] px-2 py-1 rounded">BROODED & SECURE</span>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-4">Skip the risky brooding stage. Ready for the field.</p>
+                    <div class="text-farm-gold font-bold text-xl">UGX 11,000 <span class="text-xs text-gray-500 font-normal">/ chick</span></div>
+                </article>
+            </div>
+        </section>
+
+        <section id="view-facts" class="hidden space-y-8 fade-up">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold">Performance <span class="text-farm-gold">Metrics</span></h2>
+                <p class="text-gray-400 text-sm mt-2">Data-driven farming at Bakaza Farm Entebbe</p>
+            </div>
+
+            <div class="flex bg-white/5 p-1 rounded-full max-w-sm mx-auto">
+                <button onclick="updateCharts('growth')" id="btn-growth" class="flex-1 bg-farm-gold text-farm-dark font-bold py-2.5 rounded-full text-xs transition-all">Weight Gain</button>
+                <button onclick="updateCharts('survival')" id="btn-survival" class="flex-1 text-gray-400 font-bold py-2.5 rounded-full text-xs transition-all">Survival Rate</button>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="glass-card rounded-3xl p-6">
+                    <h3 class="text-sm font-bold mb-6 flex items-center gap-2">
+                        <span class="w-2 h-6 bg-farm-gold rounded-full"></span> Growth Comparison (kg)
+                    </h3>
+                    <div class="h-64"><canvas id="macroChart"></canvas></div>
+                </div>
+
+                <div class="glass-card rounded-3xl p-6">
+                    <h3 class="text-sm font-bold mb-6 flex items-center gap-2">
+                        <span class="w-2 h-6 bg-farm-accent rounded-full"></span> Mortality/Survival (%)
+                    </h3>
+                    <div class="h-64"><canvas id="mineralChart"></canvas></div>
+                </div>
+            </div>
+
+            <div class="bg-farm-surface p-6 rounded-2xl border border-farm-gold/20">
+                <h4 class="text-lg font-bold text-farm-gold mb-2">Farmer's Insight</h4>
+                <p id="fact-text" class="text-sm text-gray-300">Kuroilers reach 3.2kg in just 20 weeks with scavenging, nearly triple the weight of local breeds.</p>
+            </div>
+        </section>
+        
+        <section id="profit-calculator" class="fade-up space-y-8 mt-16">
+            <div class="glass-card rounded-3xl p-8 border border-farm-gold/30">
+                <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                    <i class="fa-solid fa-calculator text-farm-gold"></i>
+                    Profit Estimator
+                </h2>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-400 uppercase mb-2">Number of Chicks</label>
+                            <input type="number" id="calc-count" value="100" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-farm-gold transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-400 uppercase mb-2">Chick Age</label>
+                            <select id="calc-age" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-farm-gold transition-all">
+                                <option value="1day">1-Day Old (UGX 3,500)</option>
+                                <option value="1month">1-Month Old (UGX 11,000)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-400 uppercase mb-2">Market Price per Mature Bird (UGX)</label>
+                            <input type="number" id="calc-price" value="30000" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white">
+                        </div>
+                    </div>
+
+                    <div class="bg-farm-dark/50 rounded-2xl p-6 flex flex-col justify-center border border-white/5">
+                        <div class="text-center mb-4">
+                            <span class="text-gray-400 text-xs uppercase font-bold">Estimated Net Profit</span>
+                            <div class="text-3xl md:text-4xl font-black text-farm-accent mt-1" id="res-profit">UGX 0</div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 text-center border-t border-white/10 pt-4">
+                            <div>
+                                <span class="text-[10px] text-gray-500 uppercase">Total Costs</span>
+                                <div class="text-sm font-bold text-red-400" id="res-costs">UGX 0</div>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-gray-500 uppercase">Expected Revenue</span>
+                                <div class="text-sm font-bold text-farm-gold" id="res-revenue">UGX 0</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-[10px] text-gray-500 mt-6 italic">*Estimates based on average Kuroiler feed conversion ratios and standard Ugandan market rates.</p>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // --- MOBILE MENU LOGIC ---
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('mobile-menu-icon');
+            
+            if (menu.classList.contains('hidden')) {
+                // Open Menu
+                menu.classList.remove('hidden');
+                // Small timeout to allow the display property to apply before changing opacity
+                setTimeout(() => {
+                    menu.classList.remove('opacity-0');
+                }, 10);
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            } else {
+                // Close Menu
+                menu.classList.add('opacity-0');
+                // Wait for transition to finish before hiding div
+                setTimeout(() => {
+                    menu.classList.add('hidden');
+                }, 300);
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        }
+
+        // Data updated for Chicken Farming
+        const products = [
+            {
+                title: "1-Day Old Chicks",
+                tagline: "Unbrooded Fresh Batch",
+                tag: "VACCINATED",
+                image: "chick_1day.jpg",
+                stats: ["40g Weight", "Marek's Vac", "Bulk Avail"],
+                desc: "Freshly hatched Kuroilers. These require a heat source (brooder) for the first 3-4 weeks. Ideal for experienced farmers looking to maximize ROI.",
+                ingredients: "Vaccinated for Marek's and Newcastle (Day 1)."
+            },
+            {
+                title: "1-Month Old Chicks",
+                tagline: "Hardy & Field Ready",
+                tag: "SURVIVAL+",
+                image: "chick_1month.jpg",
+                stats: ["500g Weight", "Fully Brooded", "Low Risk"],
+                desc: "We take the risk out of farming. These chicks have survived the critical first month and are ready to scavenge or eat growers mash. No heat lamps required.",
+                ingredients: "Vaccinated for Marek's, Gumboro (2 doses), and Newcastle."
+            }
+        ];
+
+        // Chart.js Setup
+        let macroChartInstance = null;
+        let mineralChartInstance = null;
+
+        const farmData = {
+            growth: {
+                labels: ['Wk 0', 'Wk 4', 'Wk 8', 'Wk 12', 'Wk 16', 'Wk 20'],
+                kuroiler: [0.04, 0.5, 1.2, 1.8, 2.5, 3.2],
+                local: [0.03, 0.2, 0.5, 0.8, 1.1, 1.4],
+                fact: "Kuroilers reach market weight (3.2kg) 2x faster than local village chickens."
+            },
+            survival: {
+                labels: ['1-Day Old Batch', '1-Month Old Batch'],
+                rates: [85, 98],
+                fact: "Purchasing 1-month-old chicks increases your survival probability to 98%, removing the risk of early-stage mortality."
+            }
+        };
+
+        function initCharts(type) {
+            const ctxMacro = document.getElementById('macroChart').getContext('2d');
+            const ctxMineral = document.getElementById('mineralChart').getContext('2d');
+
+            if (macroChartInstance) macroChartInstance.destroy();
+            if (mineralChartInstance) mineralChartInstance.destroy();
+
+            const commonOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: { ticks: { color: '#9ca3af' }, grid: { color: 'rgba(255,255,255,0.1)' } },
+                    y: { ticks: { color: '#9ca3af' }, grid: { color: 'rgba(255,255,255,0.1)' } }
+                },
+                plugins: { legend: { labels: { color: '#fff' } } }
+            };
+
+            macroChartInstance = new Chart(ctxMacro, {
+                type: 'line',
+                data: {
+                    labels: farmData.growth.labels,
+                    datasets: [
+                        { label: 'Kuroiler (kg)', data: farmData.growth.kuroiler, borderColor: '#fbbf24', tension: 0.3, fill: false },
+                        { label: 'Local (kg)', data: farmData.growth.local, borderColor: '#4ade80', tension: 0.3, borderDash: [5, 5] }
+                    ]
+                },
+                options: commonOptions
+            });
+
+            mineralChartInstance = new Chart(ctxMineral, {
+                type: 'bar',
+                data: {
+                    labels: farmData.survival.labels,
+                    datasets: [{
+                        label: 'Survival Rate %',
+                        data: farmData.survival.rates,
+                        backgroundColor: ['#f59e0b', '#10b981'],
+                        borderRadius: 8
+                    }]
+                },
+                options: { 
+                    ...commonOptions,
+                    scales: { ...commonOptions.scales, y: { ...commonOptions.scales.y, beginAtZero: true, max: 100 } },
+                    plugins: { legend: { display: false } }
+                }
+            });
+
+            document.getElementById('fact-text').innerText = farmData[type === 'growth' ? 'growth' : 'survival'].fact;
+        }
+
+        // Updated View Logic with Chart fixes
+        function switchView(view) {
+            document.getElementById('view-home').classList.toggle('hidden', view !== 'home');
+            document.getElementById('view-facts').classList.toggle('hidden', view !== 'facts');
+            
+            if(view === 'facts') {
+                // Timeout added to ensure container is visible before rendering chart
+                setTimeout(() => {
+                    initCharts('growth');
+                    updateCharts('growth'); // Updates active button state
+                }, 50);
+            }
+        }
+
+        function updateCharts(type) {
+             // Highlight active tab
+            const growthBtn = document.getElementById('btn-growth');
+            const survivalBtn = document.getElementById('btn-survival');
+            
+            if (type === 'growth') {
+                growthBtn.classList.replace('text-gray-400', 'bg-farm-gold');
+                growthBtn.classList.replace('bg-transparent', 'text-farm-dark');
+                survivalBtn.classList.replace('bg-farm-gold', 'text-gray-400');
+                survivalBtn.classList.add('bg-transparent');
+            } else {
+                survivalBtn.classList.replace('text-gray-400', 'bg-farm-gold');
+                survivalBtn.classList.replace('bg-transparent', 'text-farm-dark');
+                growthBtn.classList.replace('bg-farm-gold', 'text-gray-400');
+                growthBtn.classList.add('bg-transparent');
+            }
+            initCharts(type);
+        }
+
+        // Profit Calculator
+        function calculateProfit() {
+            const count = parseInt(document.getElementById('calc-count').value) || 0;
+            const age = document.getElementById('calc-age').value;
+            const marketPrice = parseInt(document.getElementById('calc-price').value) || 0;
+
+            const feedPricePerKg = 2100; 
+            const feedPerBirdToMaturity = 8.5; 
+            
+            let chickPrice, survivalRate, remainingFeedNeeded;
+
+            if (age === '1day') {
+                chickPrice = 3500;
+                survivalRate = 0.88; 
+                remainingFeedNeeded = feedPerBirdToMaturity; 
+            } else {
+                chickPrice = 11000;
+                survivalRate = 0.98; 
+                remainingFeedNeeded = feedPerBirdToMaturity - 0.8; 
+            }
+
+            const purchaseCost = count * chickPrice;
+            const survivingBirds = count * survivalRate;
+            const totalFeedCost = survivingBirds * remainingFeedNeeded * feedPricePerKg;
+            
+            const totalCosts = purchaseCost + totalFeedCost;
+            const totalRevenue = survivingBirds * marketPrice;
+            const netProfit = totalRevenue - totalCosts;
+
+            document.getElementById('res-profit').innerText = `UGX ${Math.round(netProfit).toLocaleString()}`;
+            document.getElementById('res-costs').innerText = `UGX ${Math.round(totalCosts).toLocaleString()}`;
+            document.getElementById('res-revenue').innerText = `UGX ${Math.round(totalRevenue).toLocaleString()}`;
+        }
+
+        ['calc-count', 'calc-age', 'calc-price'].forEach(id => {
+            document.getElementById(id).addEventListener('input', calculateProfit);
+        });
+        calculateProfit();
+
+        // Modal Functions
+        function openProduct(index) {
+            const product = products[index];
+            document.getElementById('modal-title').innerText = product.title;
+            document.getElementById('modal-desc').innerText = product.desc;
+            document.getElementById('order-qty').value = '';
+            document.getElementById('order-location').value = '';
+            document.getElementById('product-modal').classList.remove('hidden');
+            document.getElementById('product-modal').classList.add('flex');
+        }
+
+        function closeModal(event) {
+            if (!event || event.target.id === 'product-modal' || event.target.closest('.close-btn')) {
+                document.getElementById('product-modal').classList.add('hidden');
+                document.getElementById('product-modal').classList.remove('flex');
+            }
+        }
+
+        function sendWhatsAppOrder() {
+            const chickType = document.getElementById('modal-title').innerText;
+            const qty = document.getElementById('order-qty').value.trim();
+            const location = document.getElementById('order-location').value.trim();
+            
+            if (!qty || qty < 1) { alert("Please enter quantity."); return; }
+            if (!location) { alert("Please enter location."); return; }
+
+            const phoneNumber = "256786869211";
+            const message = `Hello Bakaza Farm!%0A%0AI'd like to order:%0A*Product:* ${chickType}%0A*Qty:* ${qty}%0A*Loc:* ${location}`;
+            window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+            closeModal();
+        }
+    </script>
+
+    <div id="product-modal" class="fixed inset-0 bg-black/80 hidden flex items-center justify-center z-50 px-4" onclick="closeModal(event)">
+        <div class="bg-farm-dark rounded-3xl p-8 max-w-md w-full border border-farm-gold/50 shadow-2xl animate-fadeIn relative">
+            <button onclick="closeModal()" class="close-btn absolute top-6 right-6 text-gray-400 hover:text-farm-gold text-3xl leading-none">&times;</button>
+            <div class="space-y-6">
+                <div class="text-center">
+                    <h2 id="modal-title" class="text-2xl font-bold text-white mb-4">Product Details</h2>
+                    <div class="w-full h-48 bg-farm-surface/50 rounded-2xl mb-4 flex items-center justify-center text-gray-500 italic border border-white/10">
+                        <img src="1.png" alt="Product Image" class="w-full h-full object-cover rounded-2xl">
+                    </div>
+                    <p id="modal-desc" class="text-gray-300 text-sm leading-relaxed"></p>
+                </div>
+
+                <div class="border-t border-farm-gold/20 pt-6">
+                    <h3 class="text-white font-bold mb-4 text-lg">Place Your Order</h3>
+                    
+                    <div class="space-y-5">
+                        <div>
+                            <label class="text-[10px] text-gray-400 uppercase font-bold tracking-wider">How many chicks?</label>
+                            <input type="number" id="order-qty" placeholder="e.g. 100" min="1"
+                                   class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 mt-1 text-white focus:border-farm-gold focus:ring-2 focus:ring-farm-gold/30 outline-none transition-all">
+                        </div>
+
+                        <div>
+                            <label class="text-[10px] text-gray-400 uppercase font-bold tracking-wider">Delivery/Pickup Location</label>
+                            <input type="text" id="order-location" placeholder="e.g. Entebbe, Kampala, Wakiso"
+                                   class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 mt-1 text-white focus:border-farm-gold focus:ring-2 focus:ring-farm-gold/30 outline-none transition-all">
+                        </div>
+                    </div>
+
+                    <button onclick="sendWhatsAppOrder()" 
+                            class="w-full mt-8 bg-gradient-to-r from-farm-gold to-yellow-400 text-farm-dark font-bold py-4 rounded-xl flex items-center justify-center gap-3 hover:shadow-[0_0_30px_rgba(251,191,36,0.5)] transition-all transform hover:scale-105">
+                        <i class="fa-brands fa-whatsapp text-xl"></i>
+                        Send Order via WhatsApp
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
